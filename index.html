@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap and Lock</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" a href="images/weblogo2.png">
+</head>
+<body>
+    <header id="header">
+        <a href="#" class="logo"></a>
+        <a href="#"><img src="images/weblogo2.png" class="weblogo" id="weblogo"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="learn.html">Learn</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </header>
+    <section>
+        <img src="images/cloudstestbg.png" id="clouds">
+        <img src="images/cloudbackbg.png" id="mountainback">
+        <h2 id="text">Welcome to Tap and Lock!</h2>
+        <img src="images/suntestbg.png" id="sun">
+        <img src="images/cloudfrontbg.png" id="mountain">
+    </section>
+    
+    <div class="sec" id="sec">
+        <h2>What is Internet Safety?</h2>
+        <br><br>
+        <p><b>Curiosity! Excellent, you are asking a great question!</b> 
+            <br><br>
+            What really is Internet Safety? Well... basically it is the discipline of adhering to practical principles, comprehending current technology, and safeguarding your digital equipment in order to protect yourself from the harmful aspects of the online world.
+            <br><br>
+            Sounds important, right? <br>
+            <b>Well that's because it is!</b>
+            <br><br>
+            <b><i>... but why?</i></b>
+            <br><br>
+            That's because searching for answers to queries, instructions on how to do a task, and other things on the internet delivers instant gratification. It is, nevertheless, full with potential risks. Malware, phishing, frauds, malicious files, distortion, and misinformation lurk in every nook and cranny of the internet, waiting for a web user to check them out.
+            <br><br>
+            It sounds scary, but you can fight against these <i>murky nuisance</i> with <b>knowledge!</b> It is amazing what education can do. Learning how to combat the <i>murky nuisance</i> will definitely aid you in the acquisition of information throughout the web.
+            <br><br>
+            Do you want to learn more? Check out our <b><a href="learn.html" target="_blank">learning page</a></b>!</p>
+            <br><br>
+    </div>
+<!--PARALLAX JSCRIPT-->    
+    <script>
+        let clouds = document.getElementById('clouds');
+        let mountain_back = document.getElementById('mountain_back');
+        let text = document.getElementById('text');
+        let header = document.getElementById('header')
+
+        window.addEventListener('scroll', function(){
+            let value = window.scrollY;
+            clouds.style.left = value * 0.25 + 'px';
+            mountainback.style.top = value * .5 + 'px';
+            header.style.top = value * .5 + 'px';
+        })
+    </script>
+
+<!--FLIP BOOK-->
+    <div class="bookdiv">
+        
+        <h1 class="title" id="title">What is Tap and Lock?</h1>
+        
+        <div class="body2">
+            <button class="bookbtn" id="prev-btn">↶</button>
+
+            <div id="book" class="book">
+<!--page one-->
+                <div id="p1" class="paper">
+                    <div class="front">
+                        <div id="f1" class="front-content">
+                            <img src="images/book01.png" id="book01">
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div id="b1" class="back-content">
+                            <img src="images/book02.png" id="book02">
+                        </div>
+                    </div>
+                </div>
+<!--page two-->
+                <div id="p2" class="paper">
+                    <div class="front">
+                        <div id="f2" class="front-content">
+                            <img src="images/book03.png" id="book03">
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div id="b2" class="back-content">
+                            <img src="images/book04.png" id="book04">
+                        </div>
+                    </div>
+                </div>
+<!--page three-->
+                <div id="p3" class="paper">
+                    <div class="front">
+                        <div id="f3" class="front-content">
+                            <img src="images/book05.png" id="book05">
+                        </div>
+                    </div>
+<!--back cover-->
+                    <div class="back">
+                        <div id="b3" class="back-content">
+                            <img src="images/book06.png" id="book06">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="bookbtn" id="next-btn">↷</button>
+        </div>
+<!--FLIPBOOK SCRIPT-->
+        <script>
+            const prevBtn = document.querySelector("#prev-btn");
+            const nextBtn = document.querySelector("#next-btn");
+            const book = document.querySelector("#book");
+
+            const paper1 = document.querySelector("#p1");
+            const paper2 = document.querySelector("#p2");
+            const paper3 = document.querySelector("#p3");
+
+            prevBtn.addEventListener("click", goPrevPage);
+            nextBtn.addEventListener("click", goNextPage);
+
+            let currentLocation = 1;
+            let numOfPapers = 3;
+            let maxLocation = numOfPapers + 1;
+
+            function openBook() {
+                book.style.transform = "translateX(50%)";
+                prevBtn.style.transform = "translateX(-180px)";
+                nextBtn.style.transform = "translateX(180px)";
+            }
+
+            function closeBook(isAtBeginning) {
+                if(isAtBeginning){
+                    book.style.transform = "translateX(100%)";
+                } /*else {
+                    book.style.transform = "translateX(100%)";
+                }
+                prevBtn.style.transform = "translateX(0px)";
+                nextBtn.style.transform = "translateX(0px)"; do not touch, ty */
+            }
+
+            function goNextPage() {
+                if(currentLocation < maxLocation) {
+                    switch(currentLocation) {
+                        case 1:
+                            openBook();
+                            paper1.classList.add("flipped");
+                            paper1.style.zIndex = 1;
+                            break;
+                        case 2:
+                            paper2.classList.add("flipped");
+                            paper2.style.zIndex = 2;
+                            break;
+                        case 3: 
+                            paper3.classList.add("flipped");
+                            paper3.style.zIndex = 3;
+                            closeBook();
+                            break;
+                        default:
+                            throw new Error("unknown state");
+                    }
+                    currentLocation++;
+                }
+            }
+
+            function goPrevPage() {
+                if(currentLocation > 1) {
+                    switch(currentLocation) {
+                        case 2:
+                            openBook();
+                            paper1.classList.remove("flipped");
+                            paper1.style.zIndex = 3;
+                            break;
+                        case 3:
+                            paper2.classList.remove("flipped");
+                            paper2.style.zIndex = 2;
+                            break;
+                        case 4:
+                            openBook();
+                            paper3.classList.remove("flipped");
+                            paper3.style.zIndex = 1;
+                            break;
+                        default:
+                            throw new Error("unknown state");
+                    }
+                    currentLocation--;
+                }
+            }
+        </script>
+
+        <p id="knowabout">Get to know us better by checking out our <a href="about.html" target="_blank"><b><i>about page</a>!</i></b></p>
+    </div>
+
+<!--YOUTUBE VIDEO EMBED-->
+<div class="iframeheader">
+    <h1>Know how to stay safe online!</h1>
+</div>
+<div class="iframe-container">
+    <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/HxySrSbSY7o?rel=0&color=white" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="iframedescription">
+    <p>Being connected to your friends, family, and everyone else online can be awesome! But nothing we do online is really private, including social media, text messages and even the apps you use on your own phone!
+        <br><br>
+        Do not worry, you are in control of how much or how little you want to share with your friends, your networks, and the world. As long as you know how to use social media and the internet safely, you can protect yourself!
+        <br><br>
+        <br><br>
+        <i>Check out <a href="https://www.youtube.com/c/amazeorg" target="_blank">AMAZE Org</a> for more informative videos.</i>
+    </p>
+</div>
+
+
+
+
+
+
+<!--PARALLAX MOUSE-->
+<div class="paramouse">
+    <div class="container">
+        <h2 class="object" data-value="3">Internet<br><span>Safety</span></h2>
+        <img src="images/socmeds01.png" class="object" data-value="-2" alt="">
+        <img src="images/socmeds02.png" class="object" data-value="6" alt="">
+        <img src="images/socmeds03.png" class="object" data-value="4" alt="">
+        <img src="images/socmeds04.png" class="object" data-value="-6" alt="">
+        <img src="images/socmeds05.png" class="object" data-value="8" alt="">
+        <img src="images/socmeds06.png" class="object" data-value="-4" alt="">
+        <img src="images/socmeds07.png" class="object" data-value="5" alt="">
+        <img src="images/socmeds08.png" class="object" data-value="-9" alt="">
+        <img src="images/socmeds09.png" class="object" data-value="-5" alt="">
+    </div>
+
+    <script>
+        document.addEventListener("mousemove", parallax);
+        function parallax(e)
+        {
+            document.querySelectorAll(".object").forEach(function(move)
+            {
+                var moving_value = move.getAttribute("data-value");
+                var x = (e.clientX * moving_value) / 250;
+                var y = (e.clientY * moving_value) / 250;
+
+                move.style.transform = "translateX(" + x + "px) translateY(" + y + "px)";
+            });
+        }
+    </script>
+</div>
+
+<!--FOOTER-->
+<footer class="footer">
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+    <ul class="social-icon">
+      <li class="social-icon__item"><a class="social-icon__link" href="https://www.facebook.com/Tap-and-Lock-110772634930714" target="_blank">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="https://twitter.com/TapAndLock" target="_blank">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+      <li class="social-icon__item"><a class="social-icon__link" href="#">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="menu">
+      <li class="menu__item"><a class="menu__link" href="index.html">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="learn.html">Learn</a></li>
+      <li class="menu__item"><a class="menu__link" href="about.html">About</a></li>
+
+    </ul>
+    <p>&copy;2022 Tap and Lock | All Rights Reserved</p>
+  </footer>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
