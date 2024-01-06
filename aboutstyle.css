@@ -68,16 +68,18 @@ header ul li a:hover
 }
 
 /* FAMILY IMAGE */
-.family
-{
-    background-repeat: no-repeat;
-    background-size: auto;   
+.family {
+    display: flex;
+    overflow: hidden;
 }
-#family
-{
+
+#family {
+    width: 100%;
+    height: auto;
     max-width: 100%;
     max-height: 100%;
 }
+
 
 /* ABOUT US DESCRIPTION */
 .first
